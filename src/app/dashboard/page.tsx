@@ -9,7 +9,7 @@ export default function DashboardPage() {
   useEffect(() => {
     const fetchEntries = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/diaries');
+        const res = await axios.get('https://diary-app-server-nine.vercel.app/api/diaries');
         setEntries(res.data);
       } catch (err) {
         console.error("Error fetching data:", err);
@@ -22,10 +22,10 @@ export default function DashboardPage() {
   const handleAddEntry = async () => {
     if (!title || !content) return;
     try {
-      await axios.post('http://localhost:5000/api/diaries/add', { title, content });
+      await axios.post('https://diary-app-server-nine.vercel.app/api/diaries/add', { title, content });
       setTitle('');
       setContent('');
-      const res = await axios.get('http://localhost:5000/api/diaries');
+      const res = await axios.get('https://diary-app-server-nine.vercel.app/api/diaries');
       setEntries(res.data);
     } catch (err) {
       console.error("Error saving data:", err);
@@ -34,7 +34,7 @@ export default function DashboardPage() {
 
   const handleDelete = async (id: string) => {
     try {
-      await axios.delete(`http://localhost:5000/api/diaries/delete/${id}`);
+      await axios.delete(`https://diary-app-server-nine.vercel.app/api/diaries/delete/${id}`);
       setEntries(entries.filter((entry) => entry._id !== id));
     } catch (err) {
       console.error("Error deleting data:", err);
